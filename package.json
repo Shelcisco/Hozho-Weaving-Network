@@ -1,0 +1,22 @@
+{
+  "name": "project3",
+  "version": "1.0.0",
+  "description": "Group project 3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shelcisco/Temp_Name_Project3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shelcisco/Temp_Name_Project3/issues"
+  },
+  "homepage": "https://github.com/Shelcisco/Temp_Name_Project3#readme",
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
