@@ -1,11 +1,11 @@
 # [Title]
   
 ## Table of Contents
-* Description [#Description]
-* Usage [#Usage]
-* Contributing [#Contributing]
-* Questions [#Questions]
-* Criteria [#Criteria]
+* [Description](#Description)
+* [Usage](#Usage)
+* [Contributing](#Contributing)
+* [Questions](#Questions)
+* [Criteria](#Criteria)
   
 ## Description
   
