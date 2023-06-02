@@ -14,7 +14,7 @@ const PostList = ({ posts, title }) => {
                 posts.map((post) => (
                     <div key={post._id} className="card mb-3">
                         <h4 className="card-header bg-primary text-light p-2 m-0">
-                            {post.postAuthor} <br />
+                            {post.postArtist} <br />
                             <span style={{ fontSize: '1rem' }}>
                                 posted this on {post.createdAt}
                             </span>
