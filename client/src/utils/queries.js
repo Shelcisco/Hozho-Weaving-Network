@@ -1,1 +1,1 @@
-//needs queries to query user, query blog posts, query groups , query single blog post (once this is done we can work on queries for single group)
+//needs queries to query user, query posts, query groups , query single post (once this is done we can work on queries for single group)

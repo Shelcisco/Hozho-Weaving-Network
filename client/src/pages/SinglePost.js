@@ -1,1 +1,1 @@
-//will display a single blog post, queries singlethought based on url parameter thats provided in BlogPostList Link, returns jsx, reference 24-Stu_Decode-JWT
+//will display a single post, queries singlethought based on url parameter thats provided in PostList Link, returns jsx, reference 24-Stu_Decode-JWT

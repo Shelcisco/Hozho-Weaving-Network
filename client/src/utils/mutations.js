@@ -1,1 +1,1 @@
-// Needs mutations to Login a user, add a user, create a blog post, create a group, edit a blogpost
+// Needs mutations to Login a user, add a user, create a post, create a group, edit a post
