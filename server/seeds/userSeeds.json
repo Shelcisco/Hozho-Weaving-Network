@@ -1,13 +1,1 @@
-[
-    {
-        "username":"user",
-        "password": "password1"
-
-    },
-
-    {
-        "username":"user2",
-        "password": "password2"
-
-    }
-]
+//this file will contain sample users that correspond to the User schema

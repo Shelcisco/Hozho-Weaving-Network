@@ -1,3 +1,4 @@
+//this file will import all .json files , the mongoose server connection, all models and then seed them
 const sequelize = require('../config/connection');
 const { User } = require('../models');
 

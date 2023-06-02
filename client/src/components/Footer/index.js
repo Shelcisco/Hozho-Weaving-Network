@@ -1,0 +1,1 @@
+// This component will return footer jsx 

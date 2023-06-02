@@ -1,3 +1,4 @@
+//this file will contain resolvers (queries) that will be exported and used on the front end to post, delete, retrieve and edit data
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Art } = require('../models');
 const { signToken } = require('../utils/auth');

@@ -1,3 +1,4 @@
+//this file will define the mongoose models to be used by GQL and then export
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
