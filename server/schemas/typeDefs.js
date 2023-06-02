@@ -11,7 +11,7 @@ type User {
   }
 
   // art object
-  type Art {
+  type Post {
     id: ID!
     title: String!
     description: String!
@@ -32,14 +32,14 @@ type User {
   }
 
   // input for creating a new art object
-  input CreateArtInput {
+  input CreatePost {
     title: String!
     description: String!
     imageUrl: String!
   }
 
   // input for updating an existing art object
-  input UpdateArtInput {
+  input UpdatePost {
     id: ID!
     title: String
     description: String

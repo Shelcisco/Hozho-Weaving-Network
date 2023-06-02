@@ -1,1 +1,1 @@
-// This file will contain all exports oif models to be used in server.js
+// This file will contain all exports of models to be used in server.js
