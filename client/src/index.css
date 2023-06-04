@@ -1,10 +1,10 @@
 :root {
   --primary: #497573;
-  --secondary: #F2EBDF;
+  --secondary: #FCE5B3;
   --tertiary: #b2c2c1;
   --quatrinary: #cadbda;
   --light: #F2EBDF;
-  --medium: #D93240;
+  --medium: #403F59;
   --dark: #1B1A40;
   --highlight: #BF1B1B;
   --button: 
@@ -34,7 +34,7 @@ body {
   line-height: 1.5;
   font-size: 20px;
   color: var(--dark);
-  background-color: #f3fffee1;
+  background-color: #F2EBDF;
 }
 
 h1,
