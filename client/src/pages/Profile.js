@@ -1,84 +1,86 @@
-// Logged in user profile page. See your saved posts, your own posts, edit posts, delete posts.
+import React from "react";
+import { Navigate, useParams } from "react-router-dom";
 
-import React from 'react';
-import {
-  Container,
-  Card,
-  Button,
-  Row,
-  Col
-} from 'react-bootstrap';
+import ThoughtForm from "../components/ThoughtForm";
+import ThoughtList from "../components/ThoughtList";
+import FriendList from "../components/FriendList";
 
-import Auth from '../utils/auth';
-import { removePostId } from '../utils/localStorage';
-import { useQuery, useMutation } from '@apollo/client';
-import { GET_ME } from '../utils/queries';
-import { REMOVE_POST } from '../utils/mutations';
+import { useQuery, useMutation } from "@apollo/client";
+import { QUERY_USER, QUERY_ME } from "../utils/queries";
+import { ADD_FRIEND } from "../utils/mutations";
+import Auth from "../utils/auth";
 
-const SavedPosts = () => {
-  // grab user data
-  const { loading, data } = useQuery(GET_ME);
-  const [removePost] = useMutation(REMOVE_POST);
+const Profile = (props) => {
+  const { username: userParam } = useParams();
 
-  const userData = data?.me || {};
+  const [addFriend] = useMutation(ADD_FRIEND);
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
+  });
 
-  // create function that accepts the post's mongo _id value as param and deletes the post from the database
-  const handleDeletePost = async (postId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+  const user = data?.me || data?.user || {};
 
-    if (!token) {
-      return false;
-    }
+  // navigate to personal profile page if username is yours
+  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    return <Navigate to="/profile:username" />;
+  }
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user?.username) {
+    return (
+      <h4>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+      </h4>
+    );
+  }
+
+  const handleClick = async () => {
     try {
-      await removePost({ variables: { postId }, });
-
-      removePostId(postId);
-    } catch (err) {
-      console.error(err);
+      await addFriend({
+        variables: { id: user._id },
+      });
+    } catch (e) {
+      console.error(e);
     }
   };
 
-  if (loading) {
-    return <h2>LOADING...</h2>;
-  }
-
-
   return (
-    <>
-      <div fluid='true' className="text-light bg-dark p-5">
-        <Container>
-          <h1>Viewing saved posts!</h1>
-        </Container>
-      </div>
-      <Container>
-        <h2 className='pt-5'>
-          {userData.savedPosts.length
-            ? `Viewing ${userData.savedPosts.length} saved ${userData.savedPosts.length === 1 ? 'post' : 'posts'}:`
-            : 'You have no saved posts!'}
+    <div>
+      <div className="flex-row mb-3">
+        <h2 className="bg-dark text-secondary p-3 display-inline-block">
+          {userParam ? `${user.username}'s` : "Your"} profile
         </h2>
-        <Row>
-          {userData.savedPosts.map((post) => {
-            return (
-              <Col key={post.postId} md="4">
-                <Card border='dark'>
-                  {post.image ? <Card.Img src={post.image} alt={`The cover for ${post.title}`} variant='top' /> : null}
-                  <Card.Body>
-                    <Card.Title>{post.title}</Card.Title>
-                    <p className='small'>Artists: {post.artists}</p>
-                    <Card.Text>{post.description}</Card.Text>
-                    <Button className='btn-block btn-danger' onClick={() => handleDeletePost(post.postId)}>
-                      Delete this Post!
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            );
-          })}
-        </Row>
-      </Container>
-    </>
+
+        {userParam && (
+          <button className="btn ml-auto" onClick={handleClick}>
+            Add Friend
+          </button>
+        )}
+      </div>
+
+      <div className="flex-row justify-space-between mb-3">
+        <div className="col-12 mb-3 col-lg-8">
+          <ThoughtList
+            thoughts={user.thoughts}
+            title={`${user.username}'s posts...`}
+          />
+        </div>
+
+        <div className="col-12 col-lg-3 mb-3">
+          <FriendList
+            username={user.username}
+            friendCount={user.friendCount}
+            friends={user.friends}
+          />
+        </div>
+      </div>
+      <div className="mb-3">{!userParam && <ThoughtForm />}</div>
+    </div>
   );
 };
 
-export default SavedPosts;
+export default Profile;
