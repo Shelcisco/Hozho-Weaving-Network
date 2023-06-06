@@ -1,1 +1,10 @@
-//this file will serve as a connection the the mongoose database 24-Stu_Decode-JWT
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/local-hozho', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+});
+
+module.exports = mongoose.connection;

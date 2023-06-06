@@ -1,1 +1,4 @@
-// This file will contain all exports of models to be used in server.js
+const User = require('./User');
+const Thought = require('./Thought');
+
+module.exports = { User, Thought };

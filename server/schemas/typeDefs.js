@@ -1,64 +1,46 @@
-//this file will define the mongoose models to be used by GQL and then export
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
+// create the typedefs
 const typeDefs = gql`
-// user object 
-type User {
-    _id: ID!
-    username: String!
-    email: String!
-    password: String!
+  type User {
+    _id: ID
+    username: String
+    email: String
+    friendCount: Int
+    thoughts: [Thought]
+    friends: [User]
   }
-
-  // art object
-  type Post {
-    id: ID!
-    title: String!
-    description: String!
-    imageUrl: String!
-    userId: ID!
+  type Thought {
+    _id: ID
+    thoughtText: String
+    createdAt: String
+    username: String
+    reactionCount: Int
+    reactions: [Reaction]
   }
-  
-  // auth object
+  type Reaction {
+    _id: ID
+    reactionBody: String
+    createdAt: String
+    username: String
+  }
   type Auth {
     token: ID!
-    user: User
+    user: User!
   }
-
-  // login input for user login
-  input LoginInput {
-    email: String!
-    password: String!
-  }
-
-  // input for creating a new art object
-  input CreatePost {
-    title: String!
-    description: String!
-    imageUrl: String!
-  }
-
-  // input for updating an existing art object
-  input UpdatePost {
-    id: ID!
-    title: String
-    description: String
-    imageUrl: String
-  }
-
-// query to fetch all art objects created by the current user
   type Query {
     me: User
-    myArt: [Art!]!
+    users: [User]
+    user(username: String!): User
+    thoughts(username: String): [Thought]
+    thought(_id: ID!): Thought
   }
-  
-  
-// mutations for authenticating users, creating, updating and deleting art
   type Mutation {
-    login(input: LoginInput!): Auth
-    createArt(input: CreateArtInput!): Art!
-    updateArt(input: UpdateArtInput!): Art!
-    deleteArt(id: ID!): ID!
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    addThought(thoughtText: String!): Thought
+    addReaction(thoughtId: ID!, reactionBody: String!): Thought
+    addFriend(friendId: ID!): User
   }
 `;
 
