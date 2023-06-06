@@ -17,12 +17,10 @@ const addDateSuffix = date => {
   return dateStr;
 };
 
-// function to format a timestamp, accepts the timestamp and an `options` object as parameters
 module.exports = (
   timestamp,
   { monthLength = 'short', dateSuffix = true } = {}
 ) => {
-  // create month object
   const months = {
     0: monthLength === 'short' ? 'Jan' : 'January',
     1: monthLength === 'short' ? 'Feb' : 'February',
@@ -39,29 +37,17 @@ module.exports = (
   };
 
   const dateObj = new Date(timestamp);
-  const formattedMonth = months[dateObj.getMonth()];
 
+  // Get the date components adjusted to the current timezone
+  const formattedMonth = months[dateObj.getMonth()];
   const dayOfMonth = dateSuffix
     ? addDateSuffix(dateObj.getDate())
     : dateObj.getDate();
-
   const year = dateObj.getFullYear();
-  let hour =
-    dateObj.getHours() > 12
-      ? Math.floor(dateObj.getHours() / 2)
-      : dateObj.getHours();
-
-  // if hour is 0 (12:00am), change it to 12
-  if (hour === 0) {
-    hour = 12;
-  }
-
+  const hour = dateObj.toLocaleString('en-US', { hour: 'numeric', hour12: true }).replace(/\s?[AP]M/, '');
   const minutes = dateObj.getMinutes();
-
-  // set `am` or `pm`
-  const periodOfDay = dateObj.getHours() >= 12 ? 'pm' : 'am';
-
-  const formattedTimeStamp = `${formattedMonth} ${dayOfMonth}, ${year} at ${hour}:${minutes} ${periodOfDay}`;
+  const periodOfDay = dateObj.toLocaleString('en-US', { hour: 'numeric', hour12: true, hourCycle: 'h12', timeZoneName: 'short' }).split(' ')[1];
+  const formattedTimeStamp = `${formattedMonth} ${dayOfMonth}, ${year} at ${hour}:${minutes.toString().padStart(2, '0')} ${periodOfDay}`;
 
   return formattedTimeStamp;
 };
