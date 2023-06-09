@@ -1,11 +1,12 @@
 # [Title]
   
 ## Table of Contents
-* [Description](#Description)
-* [Usage](#Usage)
-* [Contributing](#Contributing)
-* [Questions](#Questions)
-* [Criteria](#Criteria)
+* [Description](#description)
+* [Usage](#usage)
+* [Installation](#installation)
+* [Contributing](#contributing)
+* [Questions](#questions)
+* [Criteria](#criteria)
   
 ## Description
   
@@ -17,9 +18,19 @@
   
 * Users will be able to view artists works, find helpful links, connect/network with the fiber arts and shepherd community, learn new things, and search listings for fiber arts groups.
 
+## Installation
+
+## Contributing
+
+Contact one of our team members to shoot us some ideas you have for future development.
+
 ## Questions
   
-    For any questions, message the team on GitHub: (GitHub UserNames here.)
+    For any questions, message the team on GitHub.
+    Shelby Francisco 
+    Blayne Fuller
+    Christy Hanson
+    Whitney Wishart
 
 ## Criteria
 

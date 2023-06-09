@@ -4,7 +4,7 @@ const ListingCard = () => {
 
     return (
         <div className="listing-card">
-
+            <p>local listings from ListingCard</p>
         </div>
     )
 }
