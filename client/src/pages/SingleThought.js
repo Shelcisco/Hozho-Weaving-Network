@@ -18,7 +18,7 @@ const SingleThought = (props) => {
   if (loading) {
     return <div>Loading...</div>;
   }
-
+  console.log(thought.image)
   return (
     <div>
       <div className="card mb-3">
@@ -30,6 +30,7 @@ const SingleThought = (props) => {
         </p>
         <div className="card-body">
           <p>{thought.thoughtText}</p>
+          <img src = {thought.image} alt=''/>
         </div>
       </div>
 

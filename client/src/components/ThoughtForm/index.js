@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { useMutation } from "@apollo/client";
 import { ADD_THOUGHT } from "../../utils/mutations";
 import { QUERY_THOUGHTS, QUERY_ME } from "../../utils/queries";
@@ -7,6 +6,7 @@ import { QUERY_THOUGHTS, QUERY_ME } from "../../utils/queries";
 const ThoughtForm = () => {
   const [thoughtText, setText] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
+  const [image, setSelectedFile] = useState(null)
 
   const [addThought, { error }] = useMutation(ADD_THOUGHT, {
     update(cache, { data: { addThought } }) {
@@ -31,6 +31,10 @@ const ThoughtForm = () => {
     },
   });
 
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  }
   // update state based on form input changes
   const handleChange = (event) => {
     if (event.target.value.length <= 280) {
@@ -44,11 +48,26 @@ const ThoughtForm = () => {
     event.preventDefault();
 
     try {
-      await addThought({
-        variables: { thoughtText },
-      });
+      let base64Data = null;
 
-      // clear form value
+      if (image) {
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+          base64Data = reader.result;
+          const sanitizedBase64 = base64Data.replace(/^data:image\/jpeg;base64,/, '');
+          console.log('Thought Text: ' + thoughtText, 'Image: ' + sanitizedBase64)
+          await addThought({
+            variables: { thoughtText, image: sanitizedBase64 },
+          });
+        };
+        reader.readAsDataURL(image);
+      } else {
+        await addThought({
+          variables: { thoughtText, image: null },
+        });
+      }
+
+      // clear form values
       setText("");
       setCharacterCount(0);
     } catch (e) {
@@ -77,6 +96,13 @@ const ThoughtForm = () => {
         <button className="btn col-12 col-md-3" type="submit">
           Submit
         </button>
+        <input
+        type="file"
+        label="image"
+        name="customImage"
+        accept=".jpeg, .png, .jpg"
+        onChange={handleFileSelect}
+      />
       </form>
     </div>
   );

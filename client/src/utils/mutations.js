@@ -43,6 +43,7 @@ export const ADD_THOUGHT = gql`
     addThought(thoughtText: $thoughtText) {
       _id
       thoughtText
+      image
       createdAt
       username
       reactionCount

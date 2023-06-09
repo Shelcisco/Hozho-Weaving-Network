@@ -22,17 +22,17 @@ app.use(express.json());
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
+  app.use(express.static(path.join(__dirname, "../client/")));
 }
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/"));
 });
 
-// Create a new instance of an Apollo server with the GraphQL schema
+  //New apollo server
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
-  // integrate our Apollo server with the Express application as middleware
+  //apply express middleware
   server.applyMiddleware({ app });
 
   db.once("open", () => {
@@ -46,5 +46,5 @@ const startApolloServer = async (typeDefs, resolvers) => {
   });
 };
 
-// Call the async function to start the server
-startApolloServer(typeDefs, resolvers);
+
+startApolloServer();
