@@ -48,28 +48,25 @@ const ThoughtForm = () => {
     event.preventDefault();
 
     try {
-      let base64Data = null;
 
       if (image) {
         const reader = new FileReader();
+        reader.readAsDataURL(image);
         reader.onloadend = async () => {
-          base64Data = reader.result;
-          const sanitizedBase64 = base64Data.replace(/^data:image\/jpeg;base64,/, '');
-          console.log('Thought Text: ' + thoughtText, 'Image: ' + sanitizedBase64)
+          const base64Data = reader.result;
+          console.log('Thought Text: ' + thoughtText, 'Image: ' + base64Data)
           await addThought({
-            variables: { thoughtText, image: sanitizedBase64 },
+            variables: { thoughtText, image: base64Data },
           });
         };
-        reader.readAsDataURL(image);
-      } else {
-        await addThought({
-          variables: { thoughtText, image: null },
-        });
+      }else{
+        await addThought({variables: {thoughtText}})
       }
 
       // clear form values
       setText("");
       setCharacterCount(0);
+      setSelectedFile(null)
     } catch (e) {
       console.error(e);
     }
@@ -93,7 +90,7 @@ const ThoughtForm = () => {
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         ></textarea>
-        <button className="btn col-12 col-md-3" type="submit">
+        <button className="btn col-12 col-md-3" type="submit" onClick={() => handleFormSubmit}>
           Submit
         </button>
         <input
