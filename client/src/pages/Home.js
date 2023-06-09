@@ -33,7 +33,7 @@ const Home = () => {
 
       </aside>
 
-      {/* <div className="flex-row justify-space-between">
+      <div className="flex-row justify-space-between">
         {loggedIn && (
           <div className="col-12 mb-3">
             <ThoughtForm />
@@ -58,7 +58,7 @@ const Home = () => {
             />
           </div>
         ) : null}
-      </div> */}
+      </div>
     </main>
   );
 };

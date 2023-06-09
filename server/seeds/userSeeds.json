@@ -1,27 +1,27 @@
 [
   {
     "username": "hagooshii",
-    "email": "hagooshii@hagooshii.com",
+    "email": "hagooshii@email.com",
     "password": "Password01"
   },
   {
     "username": "weaver_noob",
-    "email": "weaver_noob@weaver_noob.com",
+    "email": "weaver_noob@email.com",
     "password": "Password02"
   },
   {
     "username": "Weaver4Life",
-    "email": "Weaver4Life@Weaver4Life.com",
+    "email": "Weaver4Life@email.com",
     "password": "Password03"
   },
   {
     "username": "B_Teller",
-    "email": "B_Teller@B_Teller.com",
+    "email": "B_Teller@email.com",
     "password": "Password04"
   },
   {
     "username": "H_Watcher",
-    "email": "H_Watcher@H_Watcher.com",
+    "email": "H_Watcher@email.com",
     "password": "Password05"
   }
 ]
