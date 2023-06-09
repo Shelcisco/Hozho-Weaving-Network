@@ -5,6 +5,7 @@ export const QUERY_THOUGHTS = gql`
     thoughts(username: $username) {
       _id
       thoughtText
+      image
       createdAt
       username
       reactionCount
@@ -23,6 +24,7 @@ export const QUERY_THOUGHT = gql`
     thought(_id: $id) {
       _id
       thoughtText
+      image
       createdAt
       username
       reactionCount

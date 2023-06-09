@@ -10,6 +10,9 @@ const thoughtSchema = new Schema(
       minlength: 1,
       maxlength: 280
     },
+    image: {
+      type: String
+    },
     createdAt: {
       type: Date,
       default: Date.now,
