@@ -1,5 +1,5 @@
 {
-  "name": "local-hozho",
+  "name": "hozho-weaving-network",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/whitneywishart/local-hozho.git"
+    "url": "git+https://github.com/Shelcisco/Hozho-Weaving-Network"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/whitneywishart/local-hozho/issues"
+    "url": "https://github.com/Shelcisco/Hozho-Weaving-Network/issues"
   },
-  "homepage": "https://github.com/whitneywishart/local-hozho#readme",
+  "homepage": "https://github.com/Shelcisco/Hozho-Weaving-Network#readme",
   "devDependencies": {
     "concurrently": "^7.3.0"
   }
