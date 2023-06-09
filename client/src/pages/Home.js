@@ -1,36 +1,49 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_THOUGHTS, QUERY_ME_BASIC } from "../utils/queries";
-import ThoughtList from "../components/ThoughtList";
 import Auth from "../utils/auth";
+import ThoughtList from "../components/ThoughtList";
 import FriendList from "../components/FriendList";
 import ThoughtForm from "../components/ThoughtForm";
 import ListingCard from "../components/ListingCard";
+import CommunityEventsCard from "../components/CommunityEvents";
 
+import "../Home.css"
+
+// Use a function to generate HTML page = REACT
 const Home = () => {
   // use useQuery hook to make query request
   const { loading, data } = useQuery(QUERY_THOUGHTS);
   const { data: userData } = useQuery(QUERY_ME_BASIC);
-
+  console.log(data);
   const thoughts = data?.thoughts || [];
   const loggedIn = Auth.loggedIn();
 
+  // HTML is returned, or generated.
   return (
     // HTML for the homepage goes here.
-    <main> {/*Apply display flex on this, justify-content: spaceevenly*/}
+    <main className="home-container"> {/*Apply display flex on this, justify-content: spaceevenly*/}
+
+      {/* Local Listings section */}
       <section className="local-listings">
         <div>
-          <h2>Local listings...</h2>
+          <h2>Local Listings</h2>
           <div>
-            {/*Listings go in here, create a component for it! and map thru the array of listings*/}
+            {/*Create a component for it! and map thru the array of listings*/}
+            <ListingCard />
           </div>
         </div>
-      </section>
-      <section className="community-events">
+      </section >
 
+      {/* Community Events section */}
+      <section className="community-events">
+        <h2>Community Events</h2>
+        {/*<img src={data.image} alt />*/}
+        {/* component import */}
+        <CommunityEventsCard />
       </section>
       <aside className="side-nav">
-
+        {/* side navigation goes here */}
       </aside>
 
       {/* <div className="flex-row justify-space-between">
@@ -59,7 +72,7 @@ const Home = () => {
           </div>
         ) : null}
       </div> */}
-    </main>
+    </main >
   );
 };
 
