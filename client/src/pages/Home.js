@@ -24,35 +24,57 @@ const Home = () => {
     // HTML for the homepage goes here.
     <main className="home-container"> {/*Apply display flex on this, justify-content: spaceevenly*/}
 
-      {/* Local Listings section */}
-      <section className="local-listings">
-        <div>
-          <h2>Local Listings</h2>
-          <div>
-            {/*Create a component for it! and map thru the array of listings*/}
-            <ListingCard />
-          </div>
-        </div>
-      </section >
-
-      {/* Community Events section */}
-      <section className="community-events">
-        <h2>Community Events</h2>
-        {/*<img src={data.image} alt />*/}
-        {/* component import */}
-        <CommunityEventsCard />
-      </section>
-      <aside className="side-nav">
-        {/* side navigation goes here */}
-      </aside>
-
-      <div className="flex-row justify-space-between">
+<div className="flex-row info" >
+  <div className="history flex-column" > 
+  <h1>History</h1> 
+  <div className="scrollBox"> 
+  <p>blah blah blah blah blah blah
+  </p>
+  <img src="./logo512.png"></img>
+  </div>
+  </div>
+  <div className="resources flex-column">
+    <h2>Resources & Listings </h2>
+    <br></br>
+    <div className="scrollBox"> 
+    <div className="card"> 
+    <h4 className="card-header">Title</h4>
+    <p className="card-body">cool stuff</p>
+    </div> 
+    <div className="card"> 
+    <h4 className="card-header">Title</h4>
+    <p className="card-body">cool stuff</p>
+    </div> 
+    <div className="card"> 
+    <h4 className="card-header">Title</h4>
+    <p className="card-body">cool stuff</p>
+    </div> 
+    <div className="card"> 
+    <h4 className="card-header">Title</h4>
+    <p className="card-body">cool stuff</p>
+    </div> 
+    <div className="card"> 
+    <h4 className="card-header">Title</h4>
+    <p className="card-body">cool stuff</p>
+    </div> 
+    </div>
+  </div>
+</div>
+<br></br>
+<div  className="page-title">
+<h1 >Community Posts</h1>
+</div>
+<br></br>
+<div>
+  <h4>Share your thoughts</h4>
+</div>
+      <div className="flex-row justify-center">
         {loggedIn && (
           <div className="col-12 mb-3">
             <ThoughtForm />
           </div>
         )}
-        <div className={`col-12 mb-3 ${loggedIn && "col-lg-8"}`}>
+        <div className={`col-12 mb-3 justify-space-around ${loggedIn && "col-lg-8 "}`}>
           {loading ? (
             <div>Loading...</div>
           ) : (
@@ -62,7 +84,7 @@ const Home = () => {
             />
           )}
         </div>
-        {loggedIn && userData ? (
+        {/* {loggedIn && userData ? (
           <div className="col-12 col-lg-3 mb-3">
             <FriendList
               username={userData.me.username}
@@ -70,8 +92,8 @@ const Home = () => {
               friends={userData.me.friends}
             />
           </div>
-        ) : null}
-      </div> */}
+        ) : null} */}
+      </div> 
     </main >
   );
 };
