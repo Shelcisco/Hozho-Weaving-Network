@@ -1,4 +1,4 @@
-.home-container {
+/* .home-container {
     display: flex;
     justify-content: space-around;
 }
@@ -10,4 +10,27 @@
 
 .community-events {
     background-color: rgb(205, 153, 153);
+} */
+
+.history{
+    width: 70%;
+}
+
+.resources {
+    width: 30%;
+    
+}
+
+.scrollBox{
+    height: 250px;
+    overflow: auto;
+    
+}
+
+.info{
+    border-color: #1B1A40;
+    border-width: 2px;
+    border-style: solid;
+    padding: 2rem;
+    border-radius: .5rem;
 }
