@@ -12,22 +12,49 @@
     background-color: rgb(205, 153, 153);
 } */
 
-.history{
-    width: 70%;
+.history {
+    width: 20%;
+}
+
+@media screen and (max-width: 768px) {
+    .history {
+        width: auto;
+    }
+}
+
+
+
+.posts {
+    width: 40%;
+}
+
+@media screen and (max-width: 768px) {
+    .posts {
+        width: auto;
+    }
 }
 
 .resources {
-    width: 30%;
-    
+    width: 20%;
 }
 
-.scrollBox{
+@media screen and (max-width: 768px) {
+    .resources {
+        width: auto;
+    }
+}
+
+.resources a {
+    color: #8C7348;
+}
+
+.scrollBox {
     height: 250px;
     overflow: auto;
-    
+
 }
 
-.info{
+.info {
     border-color: #1B1A40;
     border-width: 2px;
     border-style: solid;
