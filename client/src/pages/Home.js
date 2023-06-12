@@ -1,81 +1,83 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
-import { QUERY_THOUGHTS, QUERY_ME_BASIC } from "../utils/queries";
-import Auth from "../utils/auth";
-import ThoughtList from "../components/ThoughtList";
-import FriendList from "../components/FriendList";
-import ThoughtForm from "../components/ThoughtForm";
-import ListingCard from "../components/ListingCard";
-import CommunityEventsCard from "../components/CommunityEvents";
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_THOUGHTS, QUERY_ME_BASIC } from '../utils/queries';
+import Auth from '../utils/auth';
+import ThoughtList from '../components/ThoughtList';
+import FriendList from '../components/FriendList';
+import ThoughtForm from '../components/ThoughtForm';
+import ListingCard from '../components/ListingCard';
+import CommunityEventsCard from '../components/CommunityEvents';
 
-import "../Home.css"
+import '../Home.css';
 
 // Use a function to generate HTML page = REACT
 const Home = () => {
   // use useQuery hook to make query request
   const { loading, data } = useQuery(QUERY_THOUGHTS);
-  const { data: userData } = useQuery(QUERY_ME_BASIC);
-  console.log(data);
+  const {loading: profileLoading, data: userData } = useQuery(QUERY_ME_BASIC);
   const thoughts = data?.thoughts || [];
   const loggedIn = Auth.loggedIn();
-
   // HTML is returned, or generated.
   return (
     // HTML for the homepage goes here.
-    <main className="home-container"> {/*Apply display flex on this, justify-content: spaceevenly*/}
-
-<div className="flex-row info" >
-  <div className="history flex-column" > 
-  <h1>History</h1> 
-  <div className="scrollBox"> 
-  <p>blah blah blah blah blah blah
-  </p>
-  <img src="./logo512.png"></img>
-  </div>
-  </div>
-  <div className="resources flex-column">
-    <h2>Resources & Listings </h2>
-    <br></br>
-    <div className="scrollBox"> 
-    <div className="card"> 
-    <h4 className="card-header">Title</h4>
-    <p className="card-body">cool stuff</p>
-    </div> 
-    <div className="card"> 
-    <h4 className="card-header">Title</h4>
-    <p className="card-body">cool stuff</p>
-    </div> 
-    <div className="card"> 
-    <h4 className="card-header">Title</h4>
-    <p className="card-body">cool stuff</p>
-    </div> 
-    <div className="card"> 
-    <h4 className="card-header">Title</h4>
-    <p className="card-body">cool stuff</p>
-    </div> 
-    <div className="card"> 
-    <h4 className="card-header">Title</h4>
-    <p className="card-body">cool stuff</p>
-    </div> 
-    </div>
-  </div>
-</div>
-<br></br>
-<div  className="page-title">
-<h1 >Community Posts</h1>
-</div>
-<br></br>
-<div>
-  <h4>Share your thoughts</h4>
-</div>
+    <main className="home-container">
+      {' '}
+      {/*Apply display flex on this, justify-content: spaceevenly*/}
+      <div className="flex-row info">
+        <div className="history flex-column">
+          <h1>History</h1>
+          <div className="scrollBox">
+            <p>blah blah blah blah blah blah</p>
+            <img src="./logo512.png" alt="Sheep Mascot"></img>
+          </div>
+        </div>
+        <div className="resources flex-column">
+          <h2>Resources & Listings </h2>
+          <br></br>
+          <div className="scrollBox">
+            <div className="card">
+              <h4 className="card-header">Title</h4>
+              <p className="card-body">cool stuff</p>
+            </div>
+            <div className="card">
+              <h4 className="card-header">Title</h4>
+              <p className="card-body">cool stuff</p>
+            </div>
+            <div className="card">
+              <h4 className="card-header">Title</h4>
+              <p className="card-body">cool stuff</p>
+            </div>
+            <div className="card">
+              <h4 className="card-header">Title</h4>
+              <p className="card-body">cool stuff</p>
+            </div>
+            <div className="card">
+              <h4 className="card-header">Title</h4>
+              <p className="card-body">cool stuff</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br></br>
+      <div className="page-title">
+        <h1>Community Posts</h1>
+      </div>
+      <br></br>
+      <div>
+        <h4>Share your thoughts</h4>
+      </div>
       <div className="flex-row justify-center">
         {loggedIn && (
           <div className="col-12 mb-3">
             <ThoughtForm />
           </div>
         )}
-        <div className={`col-12 mb-3 justify-space-around ${loggedIn && "col-lg-8 "}`}>
-          {loading ? (
+        <div
+          className={`col-12 mb-3 justify-space-around ${
+            loggedIn && 'col-lg-8 '
+          }`}
+        >
+          {loading && profileLoading ? (
             <div>Loading...</div>
           ) : (
             <ThoughtList
@@ -93,8 +95,8 @@ const Home = () => {
             />
           </div>
         ) : null} */}
-      </div> 
-    </main >
+      </div>
+    </main>
   );
 };
 

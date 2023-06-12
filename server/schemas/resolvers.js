@@ -81,6 +81,9 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
+    removeThought: async (parent, { thoughtId }) => {
+      return Thought.findOneAndDelete({ _id: thoughtId });
+    },
     addReaction: async (parent, { thoughtId, reactionBody }, context) => {
       if (context.user) {
         const updatedThought = await Thought.findOneAndUpdate(
@@ -96,6 +99,23 @@ const resolvers = {
         return updatedThought;
       }
 
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    removeReaction: async (parent, { thoughtId, reactionId }, context) => {
+      if (context.user) {
+        return Thought.findOneAndUpdate(
+          { _id: thoughtId },
+          {
+            $pull: {
+              comments: {
+                _id: reactionId,
+                commentAuthor: context.user.username,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
       throw new AuthenticationError('You need to be logged in!');
     },
     addFriend: async (parent, { friendId }, context) => {
