@@ -21,7 +21,7 @@ const SingleThought = (props) => {
     update(cache){
       cache.evict({ id: cache.identify(thought) })
       cache.gc()
-    }
+    },
   })
   const handleThoughtDelete = async () => {
     try{
