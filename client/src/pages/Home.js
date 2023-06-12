@@ -8,7 +8,7 @@ import ThoughtForm from "../components/ThoughtForm";
 // import ListingCard from "../components/ListingCard";
 // import CommunityEventsCard from "../components/CommunityEvents";
 
-import "../Home.css"
+import '../Home.css';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_THOUGHTS);
@@ -16,7 +16,6 @@ const Home = () => {
   const { data: userData } = useQuery(QUERY_ME_BASIC);
   const thoughts = data?.thoughts || [];
   const loggedIn = Auth.loggedIn();
-
   // HTML is returned, or generated.
   return (
     // HTML for the homepage goes here.
