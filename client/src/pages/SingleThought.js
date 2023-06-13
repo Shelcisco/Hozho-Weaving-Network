@@ -18,17 +18,17 @@ const SingleThought = (props) => {
   const thought = data?.thought || {};
 
   const [thoughtDelete] = useMutation(REMOVE_THOUGHT, {
-    update(cache){
+    update(cache) {
       cache.evict({ id: cache.identify(thought) })
       cache.gc()
     },
   })
   const handleThoughtDelete = async () => {
-    try{
+    try {
       await thoughtDelete({
-        variables: {thoughtId}
+        variables: { thoughtId }
       })
-    } catch(e){
+    } catch (e) {
       console.error(e)
     }
   }
@@ -50,7 +50,7 @@ const SingleThought = (props) => {
         </p>
         <div className="card-body">
           <p>{thought.thoughtText}</p>
-          <img src={thought.image} alt="" />
+          <img src={thought.image} alt="" width="300"/>
         </div>
       </div>
 
