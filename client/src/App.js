@@ -15,7 +15,6 @@ import NoMatch from "./pages/NoMatch";
 import SingleThought from "./pages/SingleThought";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
-
 import Home from "./pages/Home";
 
 const httpLink = createHttpLink({
@@ -41,9 +40,13 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div 
+        // className="flex-column justify-flex-start min-100-vh"
+        >
           <Header />
-          <div className="container">
+          <div 
+          // className="container"
+          >
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />

@@ -9,13 +9,14 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-secondary mb-4 py-2 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
+    <header className="bg-secondary mb-4 nav-flex-container">
+      <div>
         <Link to="/">
-        <h1><img src="/logo512.png" height="50"></img>Hózhó Weaving Network</h1>
+          <h1><img src="/logo512.png" alt="logo" width="50"></img>Hózhó Weaving Network</h1>
         </Link>
-
-        <nav className="text-center">
+      </div>
+      <div  >
+        <nav>
           {Auth.loggedIn() ? (
             <>
               <Link to="/profile">Me</Link>
