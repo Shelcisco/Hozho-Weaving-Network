@@ -16,29 +16,21 @@
     width: 20%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1260px) {
     .history {
         width: auto;
     }
 }
 
 
-
-.posts {
-    width: 40%;
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1260px) {
     .posts {
         width: auto;
     }
 }
 
-.resources {
-    width: 20%;
-}
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1260px) {
     .resources {
         width: auto;
     }

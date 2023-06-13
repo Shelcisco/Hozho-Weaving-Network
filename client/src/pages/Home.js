@@ -63,7 +63,7 @@ const Home = () => {
           <br></br>
           <div>
             <div className="card">
-              <h4 className="card-header">Shearer Directory</h4>
+              <h4 className="card-header">Sheep Shearing</h4>
               <p className="card-body">
                 <a href="https://www.sheepusa.org/contacts-woolpelt-shearerdirectory" target="_blank" rel="noopener noreferrer">
                   American Sheep Industry Association</a>
@@ -71,14 +71,14 @@ const Home = () => {
             </div>
 
             <div className="card">
-              <h4 className="card-header">Fiber Spinning Directory</h4>
+              <h4 className="card-header">Fiber Spinning</h4>
               <p className="card-body">
                 <a href="https://spinoffmagazine.com/spinning-guilds-directory/" target="_blank" rel="noopener noreferrer">
                   Spinoff Magazine</a>
               </p>
             </div>
             <div className="card">
-              <h4 className="card-header">Fiber Dyeing Directory</h4>
+              <h4 className="card-header">Fiber Dyeing</h4>
               <p className="card-body">
                 <a href="https://www.sheepusa.org/contacts-woolpelt-shearerdirectory" target="_blank" rel="noopener noreferrer">
                   BIPOC in Fiber</a>

@@ -29,7 +29,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Open sans', monospace;
+  font-family: 'Open sans', sans-serif;
   font-weight: 400;
   line-height: 1.5;
   font-size: 20px;
@@ -162,6 +162,7 @@ nav a:hover {
 .form-input,
 .form-textarea {
   display: block;
+  font-family: 'Open sans', sans-serif;
 }
 
 .form-label {
@@ -805,6 +806,7 @@ nav a:hover {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
 
 .flex-column {
   display: flex;
