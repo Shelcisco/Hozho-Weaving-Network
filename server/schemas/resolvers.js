@@ -81,6 +81,13 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
+    editThought: async(parent, {thoughtId, thoughtText, image}, context) => {
+      if (context.user){
+        const thought = await Thought.findByIdAndUpdate(thoughtId, {thoughtText: thoughtText, image: image}, {new: true})
+        return thought
+      }
+      throw new AuthenticationError('You need to be logged in!')
+    },
     removeThought: async (parent, { thoughtId }) => {
       return Thought.findOneAndDelete({ _id: thoughtId });
     },

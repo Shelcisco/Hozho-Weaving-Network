@@ -1,11 +1,12 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import {React, useState} from 'react';
+import { useParams} from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_THOUGHT } from '../utils/queries';
 import { REMOVE_THOUGHT } from '../utils/mutations';
 import ReactionList from '../components/ReactionList';
 import ReactionForm from '../components/ReactionForm';
 import Auth from '../utils/auth';
+import EditThoughtForm from '../components/EditThoughtForm';
 
 const SingleThought = (props) => {
   const { id: thoughtId } = useParams();
@@ -23,6 +24,7 @@ const SingleThought = (props) => {
       cache.gc()
     },
   })
+
   const handleThoughtDelete = async () => {
     try {
       await thoughtDelete({
@@ -32,6 +34,17 @@ const SingleThought = (props) => {
       console.error(e)
     }
   }
+
+  const [edit, setEdit] = useState({
+    id: null,
+    thoughtText: '',
+    image: ''
+  });
+
+  if(edit.id) {
+    return <EditThoughtForm edit={edit}/>
+  }
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -39,6 +52,7 @@ const SingleThought = (props) => {
     currentUser === thought.username ? (
       <button onClick={handleThoughtDelete}>Delete</button>
     ) : null;
+    
   return (
     <div>
       <div className="card mb-3">
@@ -57,6 +71,7 @@ const SingleThought = (props) => {
       {thought.reactionCount > 0 && (
         <ReactionList reactions={thought.reactions} />
       )}
+      <p onClick={() => setEdit({ id: thought._id, thoughtText: thought.thoughtText, image: thought.image })}> ✏️</p>
       {deleteButton}
       {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />}
     </div>

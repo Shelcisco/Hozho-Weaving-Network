@@ -54,7 +54,6 @@ const ThoughtForm = () => {
         reader.readAsDataURL(image);
         reader.onloadend = async () => {
           const base64Data = reader.result;
-          console.log('Thought Text: ' + thoughtText, 'Image: ' + base64Data)
           await addThought({
             variables: { thoughtText, image: base64Data },
           });
