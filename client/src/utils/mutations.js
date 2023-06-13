@@ -54,6 +54,16 @@ export const ADD_THOUGHT = gql`
   }
 `;
 
+export const EDIT_THOUGHT = gql`
+mutation editThought($thoughtId: ID!, $thoughtText: String!, $image: String) {
+  editThought(thoughtId: $thoughtId, thoughtText: $thoughtText, image: $image) {
+    _id
+    thoughtText
+    image
+  }
+}
+`
+
 export const REMOVE_THOUGHT = gql`
 mutation removeThought($thoughtId: ID!) {
   removeThought(thoughtId: $thoughtId) {
@@ -75,3 +85,11 @@ export const ADD_REACTION = gql`
     }
   }
 `;
+
+export const REMOVE_REACTION = gql`
+  mutation removeReaction($thoughtId: ID!, $reactionId: ID!) {
+  removeReaction(thoughtId: $thoughtId, reactionId: $reactionId) {
+    _id
+  }
+}
+`
