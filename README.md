@@ -22,7 +22,7 @@
 1. Clone the [repo](https://github.com/Shelcisco/Hozho-Weaving-Network) to your computer. 
 2. After cloning the repo, open the repo in VS Code.
 3. Open a command line in VS Code.
-4. Run `npm install` to install Node.js.
+4. Run `npm install` to install the required packages.
 5. Run `npm run develop` to launch the app locally. 
 
 
