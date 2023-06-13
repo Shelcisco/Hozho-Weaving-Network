@@ -1,5 +1,5 @@
-import {React, useState} from 'react';
-import { useParams} from 'react-router-dom';
+import { React, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_THOUGHT } from '../utils/queries';
 import { REMOVE_THOUGHT } from '../utils/mutations';
@@ -41,8 +41,8 @@ const SingleThought = (props) => {
     image: ''
   });
 
-  if(edit.id) {
-    return <EditThoughtForm edit={edit}/>
+  if (edit.id) {
+    return <EditThoughtForm edit={edit} />
   }
 
   if (loading) {
@@ -52,10 +52,10 @@ const SingleThought = (props) => {
     currentUser === thought.username ? (
       <button onClick={handleThoughtDelete}>Delete</button>
     ) : null;
-    
+
   return (
     <div>
-      <div className="card mb-3">
+      <div className="card mb-3 m-4">
         <p className="card-header">
           <span style={{ fontWeight: 700 }} className="text-light">
             {thought.username}
@@ -64,16 +64,17 @@ const SingleThought = (props) => {
         </p>
         <div className="card-body">
           <p>{thought.thoughtText}</p>
-          <img src={thought.image} alt="" width="300"/>
+          <img src={thought.image} alt="" width="300" />
         </div>
       </div>
-
-      {thought.reactionCount > 0 && (
-        <ReactionList reactions={thought.reactions} />
-      )}
-      <p onClick={() => setEdit({ id: thought._id, thoughtText: thought.thoughtText, image: thought.image })}> ✏️</p>
-      {deleteButton}
-      {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />}
+      <div className='m-4' >
+        {thought.reactionCount > 0 && (
+          <ReactionList reactions={thought.reactions} />
+        )}
+        <p onClick={() => setEdit({ id: thought._id, thoughtText: thought.thoughtText, image: thought.image })}> ✏️</p>
+        {deleteButton}
+        {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />}
+      </div>
     </div>
   );
 };

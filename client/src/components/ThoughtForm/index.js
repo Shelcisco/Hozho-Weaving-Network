@@ -58,8 +58,8 @@ const ThoughtForm = () => {
             variables: { thoughtText, image: base64Data },
           });
         };
-      }else{
-        await addThought({variables: {thoughtText}})
+      } else {
+        await addThought({ variables: { thoughtText } })
       }
 
       // clear form values
@@ -80,25 +80,26 @@ const ThoughtForm = () => {
         {error && <span className="ml-2">Something went wrong...</span>}
       </p>
       <form
-        className="flex-row justify-center justify-space-between-md align-stretch"
         onSubmit={handleFormSubmit}
       >
         <textarea
-          placeholder="Share your thoughts..."
+          placeholder="Share your art and thoughts..."
           value={thoughtText}
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         ></textarea>
-        <button className="btn col-12 col-md-3" type="submit" onClick={() => handleFormSubmit}>
-          Submit
-        </button>
+        <div id="file-upload-button::-webkit-file-upload-button">
         <input
-        type="file"
-        label="image"
-        name="customImage"
-        accept=".jpeg, .png, .jpg"
-        onChange={handleFileSelect}
-      />
+          type="file"
+          label="image"
+          name="customImage"
+          accept=".jpeg, .png, .jpg"
+          onChange={handleFileSelect}
+        /></div>
+        <div>
+          <button className="btn col-12 col-md-3" type="submit" onClick={() => handleFormSubmit}>
+            Submit
+          </button></div>
       </form>
     </div>
   );

@@ -66,7 +66,7 @@ const EditThoughtForm = (props) => {
         onSubmit={handleFormSubmit}
       >
         <textarea
-          placeholder="Share your thoughts..."
+          placeholder="Share your art and thoughts..."
           value={thoughtText}
           className="form-input col-12 col-md-9"
           onChange={handleChange}

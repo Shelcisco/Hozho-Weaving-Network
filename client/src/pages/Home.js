@@ -8,7 +8,7 @@ import ThoughtForm from "../components/ThoughtForm";
 // import ListingCard from "../components/ListingCard";
 // import CommunityEventsCard from "../components/CommunityEvents";
 
-import '../Home.css';
+import '../style.css';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_THOUGHTS);
@@ -16,79 +16,71 @@ const Home = () => {
   const { data: userData } = useQuery(QUERY_ME_BASIC);
   const thoughts = data?.thoughts || [];
   const loggedIn = Auth.loggedIn();
-  // HTML is returned, or generated.
+
+  // HTML is returned
   return (
-    // HTML for the homepage goes here.
-    <main className="home-container">
-      {/* Three-column layout */}
-      <div className="flex-row">
-        {/* Left column: History */}
-        <div className="history flex-column">
-          <h2>Welcome to the Hózhó Weaving Network</h2>
-          <div>
-            <p>Ut sed consectetur justo. Vivamus eget diam venenatis odio fringilla facilisis a tincidunt nisi. Vivamus hendrerit massa metus, eu vehicula odio bibendum hendrerit. </p>
-            <p>Suspendisse potenti. Donec convallis finibus sem finibus luctus. Nulla facilisi. Nulla iaculis in nibh ac mollis. Morbi faucibus et risus a eleifend. Suspendisse fermentum non odio nec efficitur. Proin mollis nulla in tincidunt ultrices. Nullam et pulvinar tortor. Integer a porttitor quam, eu efficitur magna.</p>
-          </div>
+    <div className="flex-container">
+      {/* Left column: Welcome */}
+
+      <div className="column" >
+        <h2>Welcome to the Hózhó Weaving Network</h2>
+        <p>Weaving together creativity, passion, and the beauty of fiber arts, our network is a vibrant community of artists who are passionate about the art of weaving. Whether you are an experienced weaver or just beginning your journey, we are here to celebrate and support your artistic endeavors.
+        </p>
+        <p>Within our network, you will find a rich tapestry of inspiration, knowledge-sharing, and collaboration. Connect with fellow artists who share your love for fiber weaving, exchange ideas, and explore the endless possibilities of this ancient craft.</p>
+      </div>
+
+      {/* Middle column: Community Posts */}
+      <div className="column" >
+        <h1>Community Posts</h1>
+        <h2><small>Share your artwork and thoughts</small></h2>
+
+        {/* Display ThoughtForm if logged in */}
+        <div className="mb-3">
+          {loggedIn && (
+            <ThoughtForm />
+          )}
         </div>
 
-        {/* Middle column: Community Posts */}
-        <div className="posts flex-column">
-          <div className="page-title">
-            <h1>Community Posts</h1>
-          </div>
-          <div>
-            <h4>Share your artwork and thoughts</h4>
-          </div>
-          <div className="flex-row justify-center">
-            {/* Display ThoughtForm if logged in */}
-            {loggedIn && (
-              <div className="col-12 mb-3">
-                <ThoughtForm />
-              </div>
-            )}
-            {/* Display ThoughtList */}
-            <div className={`col-12 mb-3 justify-space-around ${loggedIn && "col-lg-8"}`}>
-              {loading ? (
-                <div>Loading...</div>
-              ) : (
-                <ThoughtList thoughts={thoughts} title="Recent posts..." />
-              )}
-            </div>
-          </div>
+        {/* Display ThoughtList */}
+        <div className={`${loggedIn && "column"}`} >
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <ThoughtList thoughts={thoughts} title="Recent posts..." />
+          )}
         </div>
+      </div>
 
-        {/* Right column: Resources & Listings */}
-        <div className="resources flex-column">
-          <h2>Resources & Listings</h2>
-          <br></br>
-          <div>
-            <div className="card">
-              <h4 className="card-header">Sheep Shearing</h4>
-              <p className="card-body">
-                <a href="https://www.sheepusa.org/contacts-woolpelt-shearerdirectory" target="_blank" rel="noopener noreferrer">
-                  American Sheep Industry Association</a>
-              </p>
-            </div>
+      {/* Right column: Resources & Listings */}
+      <div>
+        <h2>Resources & Listings</h2>
+        <div>
+          <div className="card">
+            <h3 className="card-header">Sheep Shearing</h3>
+            <p className="card-body resources">
+              <a href="https://www.sheepusa.org/contacts-woolpelt-shearerdirectory" target="_blank" rel="noopener noreferrer">
+                American Sheep Industry Association</a>
+            </p>
+          </div>
 
-            <div className="card">
-              <h4 className="card-header">Fiber Spinning</h4>
-              <p className="card-body">
-                <a href="https://spinoffmagazine.com/spinning-guilds-directory/" target="_blank" rel="noopener noreferrer">
-                  Spinoff Magazine</a>
-              </p>
-            </div>
-            <div className="card">
-              <h4 className="card-header">Fiber Dyeing</h4>
-              <p className="card-body">
-                <a href="https://www.sheepusa.org/contacts-woolpelt-shearerdirectory" target="_blank" rel="noopener noreferrer">
-                  BIPOC in Fiber</a>
-              </p>
-            </div>
-
+          <div className="card">
+            <h3 className="card-header">Fiber Spinning</h3>
+            <p className="card-body resources">
+              <a href="https://spinoffmagazine.com/spinning-guilds-directory/" target="_blank" rel="noopener noreferrer">
+                Spinoff Magazine</a>
+            </p>
+          </div>
+          <div className="card">
+            <h3 className="card-header">Fiber Dyeing</h3>
+            <p className="card-body resources">
+              <a href="https://www.sheepusa.org/contacts-woolpelt-shearerdirectory" target="_blank" rel="noopener noreferrer">
+                BIPOC in Fiber</a>
+            </p>
           </div>
         </div>
       </div>
-    </main>
+    </div>
+
   );
 };
 

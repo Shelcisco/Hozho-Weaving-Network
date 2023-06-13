@@ -49,9 +49,9 @@ const Profile = (props) => {
   };
 
   return (
-    <div>
+    <div className="m-4">
       <div className="flex-row mb-3">
-        <h2 className="bg-dark text-secondary p-3 display-inline-block">
+        <h2 className="bg-dark text-secondary p-3 display-inline-block your-profile">
           {userParam ? `${user.username}'s` : "Your"} profile
         </h2>
 
@@ -70,6 +70,8 @@ const Profile = (props) => {
           />
         </div>
 
+      </div>
+      <div className="mb-3">{!userParam && <ThoughtForm />}</div>
         <div className="col-12 col-lg-3 mb-3">
           <FriendList
             username={user.username}
@@ -77,8 +79,6 @@ const Profile = (props) => {
             friends={user.friends}
           />
         </div>
-      </div>
-      <div className="mb-3">{!userParam && <ThoughtForm />}</div>
     </div>
   );
 };
