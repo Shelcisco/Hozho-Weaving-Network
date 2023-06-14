@@ -7,6 +7,7 @@ import ReactionList from '../components/ReactionList';
 import ReactionForm from '../components/ReactionForm';
 import Auth from '../utils/auth';
 import EditThoughtForm from '../components/EditThoughtForm';
+import { useNavigate } from "react-router-dom";
 
 const SingleThought = (props) => {
   const { id: thoughtId } = useParams();
@@ -15,6 +16,7 @@ const SingleThought = (props) => {
     variables: { id: thoughtId },
   });
 
+  const navigate = useNavigate()
   const currentUser = Auth.getProfile().data.username;
   const thought = data?.thought || {};
 
@@ -30,6 +32,7 @@ const SingleThought = (props) => {
       await thoughtDelete({
         variables: { thoughtId }
       })
+      navigate('/')
     } catch (e) {
       console.error(e)
     }
@@ -53,6 +56,11 @@ const SingleThought = (props) => {
       <button onClick={handleThoughtDelete}>Delete</button>
     ) : null;
 
+  const editButton = 
+    currentUser === thought.username ? (
+      <button onClick={() => setEdit({ id: thought._id, thoughtText: thought.thoughtText, image: thought.image })}>✏️</button>
+    ) : null;
+
   return (
     <div>
       <div className="card mb-3 m-4">
@@ -71,8 +79,10 @@ const SingleThought = (props) => {
         {thought.reactionCount > 0 && (
           <ReactionList reactions={thought.reactions} />
         )}
-        <p onClick={() => setEdit({ id: thought._id, thoughtText: thought.thoughtText, image: thought.image })}> ✏️</p>
-        {deleteButton}
+        <div className='button-container'>
+          {editButton}
+          {deleteButton}
+        </div>
         {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />}
       </div>
     </div>
