@@ -212,7 +212,9 @@ button:hover {
   background-color: var(--primary);
 }
 
-
+.button-container button{
+  cursor: pointer;
+}
 
 input {
   color: var(--dark);
